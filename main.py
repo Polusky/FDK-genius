@@ -23,7 +23,7 @@ coordict = {"WP Kuala Lumpur": [101.688021, 3.137766],
             "WP Labuan": [115.222279, 5.311390]}
 
 # initial data processing
-data_file = open("C:/Users/isamf/Documents/GitHub/FDK-genius/testdata.csv")
+data_file = open("testdata.csv")
 data_raw = data_file.readlines()
 
 data = []
