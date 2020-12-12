@@ -23,8 +23,7 @@ coordict = {"WP Kuala Lumpur": [101.688021, 3.137766],
             "WP Labuan": [115.222279, 5.311390]}
 
 # initial data processing
-data_file = open(
-    "testdata.csv")
+data_file = open("C:/Users/isamf/Documents/GitHub/FDK-genius/testdata.csv")
 data_raw = data_file.readlines()
 
 data = []
@@ -42,9 +41,9 @@ st.pydeck_chart(pdk.Deck(
     st.pydeck_chart(pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=pdk.ViewState(
-            latitude=0,
-            longitude=0,
-            zoom=6,
+            latitude=5,
+            longitude=108.5,
+            zoom=4.5,
             pitch=50,
         ),
         layers=[pdk.Layer(type='HexagonLayer',
@@ -52,7 +51,7 @@ st.pydeck_chart(pdk.Deck(
                           get_position='-',
                           auto_highlight=True,
                           elevation_scale=100,
-                          radius=10000,
+                          radius=15000,
                           pickable=True,
                           extruded=True,
                           elevation_range=[0, 5000]
