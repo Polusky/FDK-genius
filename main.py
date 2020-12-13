@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import pydeck as pdk
-import urllib.request
+
 
 # Coordinates for hexagon centers.
 coordict = {"WP Kuala Lumpur": [101.688021, 3.137766],
@@ -39,13 +39,19 @@ try:
     else:
         data_file = open("testcases.csv")
 except NameError:
+    "Please select a dataset."
     st.stop()
 
+if (datatoshow == 2):
+    hexacolor = [[237, 248, 251], [191, 211, 230],
+                 [158, 188, 218], [140, 150, 198], [136, 86, 167], [129, 15, 124]]
+else:
+    hexacolor = [[255, 255, 178], [254, 217, 118],
+                 [254, 178, 76], [253, 141, 60], [240, 59, 32], [189, 0, 38]]
 data_raw = data_file.readlines()
 
 data = []
 df = []
-layers = []
 
 for lines in data_raw:
     data.append(lines.split(","))
@@ -53,7 +59,6 @@ for lines in data_raw:
 for count in data:
     for i in range(int(count[1])):
         df.append(coordict[count[0]])
-
 
 st.pydeck_chart(pdk.Deck(
     st.pydeck_chart(pdk.Deck(
@@ -71,6 +76,7 @@ st.pydeck_chart(pdk.Deck(
                           elevation_scale=100,
                           radius=15000,
                           pickable=True,
+                          colorRange=hexacolor,
                           extruded=True,
                           elevation_range=[0, 5000]
                           )
