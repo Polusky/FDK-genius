@@ -22,12 +22,30 @@ coordict = {"WP Kuala Lumpur": [101.688021, 3.137766],
             "Sabah": [117.020172, 5.222607],
             "WP Labuan": [115.222279, 5.311390]}
 
-# initial data processing
-data_file = open("testdata.csv")
+st.title("Malaysian Covid-19 Statistics.")
+st.subheader("Data shown:")
+
+col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(np.ones(8))
+
+if (col1.button("Cases")):
+    datatoshow = 1
+if (col2.button("Deaths")):
+    datatoshow = 2
+
+# data processing
+try:
+    if (datatoshow == 2):
+        data_file = open("testdeaths.csv")
+    else:
+        data_file = open("testcases.csv")
+except NameError:
+    st.stop()
+
 data_raw = data_file.readlines()
 
 data = []
 df = []
+layers = []
 
 for lines in data_raw:
     data.append(lines.split(","))
